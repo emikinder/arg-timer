@@ -8,7 +8,7 @@ body {
     font-family: 'Poppins', sans-serif;
     height: 100vh;
     width: 100%;
-    background: rgb(0, 0, 0);
+    background: #000;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,7 +51,7 @@ body {
 }
 
 .stars {
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 .hidden {
@@ -59,11 +59,114 @@ body {
     height: 0;
 }
 
-@media only screen and (min-width: 481px) {
-    .images {
-        height: 30%;
-    }
-    .images>img {
-        width: 150px;
-    }
+.progress {
+    position: relative;
+    bottom: 0px;
+    height: 400px;
+    overflow: visible;
+}
+
+.vaso {
+    width: 280px;
+    height: 400px;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+    border-radius: 5px;
+    background-color: white;
+    overflow: visible;
+}
+
+.vaso-int {
+    position: absolute;
+    background: #000;
+    border-radius: 8px;
+    width: 280px;
+    height: 400px;
+    top: 0;
+    left: 0;
+    clip-path: polygon(0.5% 0.5%, 99.5% 0.5%, 84.5% 99.5%, 15.5% 99.5%);
+    overflow: visible;
+}
+
+.fernet {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color: rgb(24, 15, 3);
+    overflow: visible;
+}
+
+.espuma {
+    width: 100%;
+    height: 15px;
+    background-color: rgb(212, 188, 138);
+    display: flex;
+    justify-content: center;
+}
+
+.espumitas {
+    position: relative;
+    top: -10px;
+    border-radius: 100%;
+    width: 40px;
+    height: 25px;
+    background-color: rgb(212, 188, 138);
+    z-index: 1;
+}
+
+.hielos {
+    width: 100%;
+    height: 170px;
+}
+
+.rotated {
+    rotate: 180deg;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+
+.hielo {
+    position: absolute;
+    bottom: 16px;
+    right: 38px;
+    border: 2px solid rgb(211, 209, 209);
+    border-radius: 10px;
+    width: 95px;
+    height: 71px;
+    rotate: -25deg;
+    padding: 5px;
+}
+
+.brillo {
+    border-right: 1px solid rgb(211, 209, 209);
+    border-top: 1px solid rgb(211, 209, 209);
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+}
+
+.hielo-1 {
+    position: absolute;
+    bottom: 19px;
+    left: 38px;
+    border: 2px solid rgb(211, 209, 209);
+    border-radius: 10px;
+    width: 88px;
+    height: 78px;
+    rotate: -57deg;
+    padding: 5px;
+}
+
+.hielo-2 {
+    position: absolute;
+    bottom: 90px;
+    left: 98px;
+    border: 2px solid rgb(211, 209, 209);
+    border-radius: 10px;
+    width: 88px;
+    height: 78px;
+    rotate: 45deg;
+    padding: 5px;
 }

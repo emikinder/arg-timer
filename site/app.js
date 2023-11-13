@@ -1,42 +1,63 @@
-let dayField = document.getElementById('day');
-let hourField = document.getElementById('hour');
-let minuteField = document.getElementById('minute');
-let secondField = document.getElementById('second');
-let timerField = document.getElementById('timer');
-let completedField = document.getElementById('completed');
+// DOM element references
+const elements = {
+    day: document.getElementById("day"),
+    hour: document.getElementById("hour"),
+    minute: document.getElementById("minute"),
+    second: document.getElementById("second"),
+    timer: document.getElementById("timer"),
+    completed: document.getElementById("completed"),
+    fernet: document.querySelector(".fernet"),
+    hielos: document.querySelector(".hielos"),
+    espuma: document.querySelector(".espuma"),
+};
 
-let interval;
-// const eventDay = new Date('10/10/2023');
-const eventDay = new Date('01/13/2024');
+// time constants
+const time = {
+    second: 1000,
+    minute: 1000 * 60,
+    hour: 1000 * 60 * 60,
+    day: 1000 * 60 * 60 * 24,
+};
 
-// Convert to millisecond
-const second = 1000;
-const minute = second * 60;
-const hour = minute * 60;
-const day = hour * 24;
+const eventDay = new Date("01/13/2024");
 
 const countDown = () => {
-    let now = new Date();
-    let timeSpan = eventDay - now;
+    const now = new Date();
+    const timeSpan = eventDay - now;
 
     if (timeSpan <= 0) {
         clearInterval(interval);
-        timerField.classList.add("hidden");
-        completedField.classList.remove("hidden");
+        elements.timer.classList.add("hidden");
+        elements.completed.classList.remove("hidden");
         return;
     }
-    else {
-        const days = Math.floor(timeSpan / day)
-        const hours = Math.floor((timeSpan % day) / hour)
-        const minutes = Math.floor((timeSpan % hour) / minute)
-        const seconds = Math.floor((timeSpan % minute) / second)
 
-        // Set results
-        dayField.innerHTML = days;
-        hourField.innerHTML = hours;
-        minuteField.innerHTML = minutes;
-        secondField.innerHTML = seconds;
-    }
-}
+    const days = Math.floor(timeSpan / time.day);
+    const hours = Math.floor((timeSpan % time.day) / time.hour);
+    const minutes = Math.floor((timeSpan % time.hour) / time.minute);
+    const seconds = Math.floor((timeSpan % time.minute) / time.second);
 
-everySecond = setInterval(countDown, second)
+    const padNumber = (num) => (num < 10 ? `0${num}` : num);
+
+    elements.day.innerHTML = padNumber(days);
+    elements.hour.innerHTML = padNumber(hours);
+    elements.minute.innerHTML = padNumber(minutes);
+    elements.second.innerHTML = padNumber(seconds);
+};
+
+const interval = setInterval(countDown, time.second);
+
+// Fernet
+const updateFernet = () => {
+    const now = new Date();
+    const timeSpan = eventDay - now;
+    const daysLeft = Math.floor(timeSpan / time.day);
+
+    elements.fernet.style.height =
+        daysLeft >= 0 ? `${(60 - daysLeft) * 6.66}px` : "400px";
+    if (daysLeft < 35) elements.hielos.style.position = "relative";
+    if (daysLeft < 20) elements.hielos.classList.toggle("rotated");
+    if (daysLeft > 56) elements.espuma.classList.toggle("hidden");
+};
+
+updateFernet();
